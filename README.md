@@ -34,7 +34,7 @@
 
 - `Select distinct Country from Table`
 
-- `Select distinct Country, PinCode from Table` *Combication of unique country and pincode will be displayed
+- `Select distinct Country, PinCode from Table` *Combination of unique country and pincode will be displayed
 
 
 ## 4. SQL is not case sensitive
@@ -104,27 +104,116 @@ All of these all retrieve same data
 
 ## 9. Between operator
 
+> To filter records based on some range
+
+> Practice:
+- `Select * from Products where Price Between 10 and 20`
+- `Select * from Products where Price NOT Between 10 and 20`
+
 ## 10. Order By clause
+
+> Purpose is to retrieve records in ascending or descending order.
+> Practice:
+- `Select * from Products order by price ASC, discount ASC `
+- `Select * from Products order by price DESC, discount DESC`
 
 ## 11. Between operator with Text
 
+> To filter based on some range (the data is ordered in ascending order of alphabets automatically)
+
+> Practice:
+- `Select * from Products where Name Between 'Box' and 'Pen'`
+
 ## 12. In Operator
+
+> Simplifies providing multiple values in where clause. (Works with OR)
+
+> Practice:
+- `Select * from Products where price=10 or price=20 or price=30`
+- `Select * from Products where prine in(10, 20, 30)`
+- `Select * from Customers where Country='India' or Country='USA'`
+- `Select * from Customers where Country in('India', 'USA')`
 
 ## 13. Like Operator and wildcard characters
 
+> We can use Like operator and wildcard characters for pettern matching needs.
+>
+> We can use them in Where clause condition.
+
+> Practice:
+- %: Multi Chars
+- _: Single Char
+- `Select * from Customers where CustomerName like 'A%'`
+- `Select * from Customers where CustomerName like '%A'`
+- `Select * from Customers where CustomerName like 'A_'`
+- `Select * from Customers where CustomerName like '_A'`
+- `Select * from Customers where CustomerName like '%A%'`
+- `Select * from Customers where CustomerName like '_A_'`
+
 ## 14.Aliases
 
+> While the records are retrieved, there alias provided for the column names will be displayed in place of original column name
+
+> Practice:
+- `Select ProductID as ID, ProductName as Name from Products`
+
 ## 15. Limit Keyword
+> Using limit keyword we can decide how many records are to be displayed on the page irrespective of number of records present in the table.
+
+> Practice:
+- `Select * from Products LIMIT 3`
+- `Select * from Products LIMIT 2,8` * Start with index 2 and print first 8 records
+
 
 ## 16. Breaking lengthy sql statements
+> Break SQL statements by clause for better understanding
+
+- `Select CustomerID, CustomerName, City, Country, Pin from Customer where City='Delhi' Limit 5 Order By Pin DESC`
+- `Select CustomerID, CustomerName, City, Country, Pin`
+
+    `from Customer`
+
+    `where City='Delhi'`
+    
+    `Limit 5`
+    
+    `Order By Pin DESC`
 
 ## 17. MySQL builtin functions
+> There are several built-in functions, using which we can perform different operations on different table data.
+
+> Types of built-in functions
+> - String Functions
+> - Numeric Functions
+> - Date Time Functions
+> - Aggregate Functions
 
 ## 18. upper() function
+> Convert text under the specified column data into upper case
+
+> Practice:
+
+- `Select upper('Dishant')`
+- `Select upper(Country) as Country from Customer`
+- `Select upper(Country) as Country, upper(City) as City from Customer`
 
 ## 19. lower() function
+> Convert text under the specified column data into lower case
+
+> Practice:
+
+- `Select lower('Dishant')`
+- `Select lower(Country) as Country from Customer`
+- `Select lower(Country) as Country, upper(City) as City from Customer`
 
 ## 20. length() function
+> Find size of data under specified column
+
+> Practice:
+
+- `Select length('Dishant')`
+- `Select Country, length(Country) as CountrySize from Customer`
+- `Select * from Customer where length(Country) = 6`
 
 ## 21. instr() function
 
@@ -178,30 +267,30 @@ All of these all retrieve same data
 
 ## 45. Rollback Statement
 
-Truncate Statement
+## 46. Truncate Statement
 
-Single and Multi Line Comments
+## 47. Single and Multi Line Comments
 
-Group By Clause
+## 48. Group By Clause
 
-Having Clause
+## 49. Having Clause
 
-Sequence of using Where, Group By, Having and Order By
+## 50. Sequence of using Where, Group By, Having and Order By
 
-Set Operator
+## 51. Set Operator
 
-Union Operator
+## 52. Union Operator
 
-Union All Operator
+## 53. Union All Operator
 
-Intersect Operator
+## 54. Intersect Operator
 
-Minus Operator
+## 55. Minus Operator
 
-Tables and Aliases
+## 56. Tables and Aliases
 
-Joins
+## 57. Joins
 
-Subquery
+## 58. Subquery
 
 
