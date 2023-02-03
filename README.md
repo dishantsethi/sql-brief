@@ -216,50 +216,198 @@ All of these all retrieve same data
 - `Select * from Customer where length(Country) = 6`
 
 ## 21. instr() function
+> Find the position of given text in the specified column
+
+- `select instr('Dishant', 'i')`
+- `select instr(Country, 'e') as Position from Customer`
 
 ## 22. substr() function
+> Retrieves a portion of text from the specified column
+
+- `select substr('Dishant', 2,5)`
+- `select substr(ColumnName, StartIndex, Size)`
 
 ## 23. concat() function
+> Adds two or more table column together.
+
+- `select concat(Firstname, ' ', LastName) from Table`
+- `select concat('Dishant', ' ', 'Sethi')`
 
 ## 23. trim() function
+> To remove leading and trailing spaces in column data.
+
+- `select trim('   Dishant   ')`
+- `select trim(concat(FirstName, LastName)) from Table`
 
 ## 24. abs() function
+> The function will retrieve positive value irrespective of whether the given number is positive or negative.
+
+- `select abs(-9)`
+- `select abs(9)`
+- `select abs(price) from table`
 
 ## 25. mod() function
+> mod function will return remainder value of the given data of specified column.
+
+- `select mod(12,3)` 0
+- `select mod(10,3)` 1
+- `select mod(14,5)` 4
 
 ## 26. greatest() and least() function
+> return the greatest and least value from the given numeric values
+
+- `select greatest(1,2,3,4,5,6,7,8,9,19)`
+- `select least(1,2,3,4,5,6,7,8,9,19)`
+- ``
 
 ## 27. truncate() function
+> returns the numerical value with the specified number of digits after the decimal points.
+
+- `select truncate(123.456, 1)` 123.4
+- `select truncate(price, 2) from Products`
 
 ## 28. power() and sqrt() function
+> Power and square root of given numeric value
+
+- `select power(2,5)` 2*2*2*2*2
+- `select sqrt(2)` 1.414
 
 ## 29. current_date(), curdate(), current_time(), curtime(), now(), sysdata() function
+> current_date(): Return the current date in string format
+>
+> curdate():  Return current date in string format
+>
+> current_time(): Return current time HH:MM:SS
+>
+> curtime(): Return current time HH:MM:SS
+>
+> now(): Return both current date and time
+>
+> sysdate(): Return both current date and time
 
 ## 30. year(), month(), day(), monthname(), dayname() function
 
+- `select year('2020-04-01')`
+- `select month('2020-04-01')`
+- `select day('2020-04-01')`
+- `select monthname('2020-04-01')`
+- `select dayname('2020-04-01')`
+- `select * from Orders where month(OrderDate)=4`
+- `select * from Orders where monthname(OrderDate)='May'`
+
 ## 31. avg(), max(), min(), count(), sum() function
 
+- `select avg(price) from Products`
+- `select max(price) from Products`
+- `select min(price) from Products`
+- `select sum(price) from Products`
+- `select count(*) from Products`
+
 ## 32. Arithmetic Operators
+> Below are Arithmetic operators which can be used in sql
+- Addition (+)
+- Subtraction (-)
+- Multiplication (*)
+- Division (/)
+- Modulus (%)
+
+> Demonsteration
+- `select 5+4`
+- `select 5-4`
+- `select 5*4`
+- `select 5/4`
+- `select 5%4`
+- `select price, price+10 from products`
+- `select price, price-10 from products`
+- `select price, price*10 from products`
+- `select price, price/10 from products`
+- `select price, price%10 from products`
 
 ## 33. Install Mysql server and Mysql workbench
+> Mysql server: store the data in database
+>
+> Mysql workbench client: GUI application to connect to the database server and perform operations on the database
+
+> How to install mysql server and mysql workbench client?
+>
+> GOOGLE IT.
 
 ## 34. Create, Delete, Viewing and Using Database in Workbench
+> Creating a database:
+- `show databases;`
+- `create database DBName;`
+- Refresh to see the newly created database
+- Observe that the db will be created without any table, views, stored procedure and functions
 
-## 35. Create, Viewing, Describing and Deleting Tables in Workbench
+> Deleting a database:
+- `show databases;`
+- `drop database DBName;`
+
+> Use a database:
+- `use DBName; select * from Table;`
+OR
+- `select * from DBName.Table;`
+
+## 35. Create, Describing and Deleting Tables in Workbench
+> create table
+- `use DBName;`
+- `show tables;`
+- `create table TableName(id int, name varchar(50), gender varchar(1), country varchar(50), experience int)`
+- `create table NewTable as Select * from OldTable` //data from oldtable will also be copied
+
+> describe table
+- `use DBName;`
+- `describe TableName;`
+
+> delete table
+- `use DBName;`
+- `drop table TableName;`
 
 ## 36. Insert Statement
+> Insert data into table
+
+- `use DBName;`
+- `Insert into TableName values(value1, value2, ..., valueN)`
+- `Insert into TableName(col1, col2) values(value1, value2)`
 
 ## 37. Data Types
+> Commonly used data types
+- varchar(size)
+- int
+- double
+- boolean
+- date
+- time
+- datetime
+- year
 
 ## 38. Null Value, IsNull and IsNotNull
+> Suppose a table Employee with three columns id, name, experience
+
+- `insert into employee values(1, 'dishant')` // error
+- `insert into employee(id, name) values(1, 'dishant')` // experience will be NULL
+- `select * from employee where experience IS NULL`
+- `select * from employee where experience IS NOT NULL`
 
 ## 39. Delete Statement
 
+- ``
+- ``
+
 ## 40. Update Statement
+
+- ``
+- ``
 
 ## 41. Rename Statement and To Keyword
 
+- ``
+- ``
+
 ## 42. Alter Statement, Add Modify Rename and Drop Column
+
+- ``
+- ``
 
 ## 43. Set Autocommit
 
