@@ -390,55 +390,214 @@ OR
 - `select * from employee where experience IS NOT NULL`
 
 ## 39. Delete Statement
+> Use delete statement to delete table records.
 
-- ``
-- ``
+- `delete from TableName where id=1`
+- `delete from TableName where id=2`
 
 ## 40. Update Statement
+> Update records of a table using SET keyword
 
-- ``
-- ``
+- `update TableName set name='Dishant' where id=1`
+- `update Employee set name='Dishant Sethi' where id=2`
 
 ## 41. Rename Statement and To Keyword
+> Rename Table name using To Keyword
 
-- ``
-- ``
+- `rename table Employee to NewTableName`
+- `rename table Product to NewProducts`
 
 ## 42. Alter Statement, Add Modify Rename and Drop Column
+> Use ALTER keyword to add, modify, rename and drop column
 
-- ``
-- ``
+- `Alter table Employee add location varchar(25)`
+- `Alter table Employee modify location int`
+- `Alter table Employee rename column location to loc`
+- `Alter table Employee drop column loc`
 
 ## 43. Set Autocommit
+> In mysql workbench client, autocommit is set to 1(True), We can turn it off using
+
+- `set autocommit = 0` 
+
+> The changes you make to the tables will be temporary changes if autocommit is off.
 
 ## 44. Commit Statement
+> If autocommit is turned off, using commit keyword to save the changes manually.
+
+- `commit;`
 
 ## 45. Rollback Statement
+> Revert temporary changes done on a particular table
+
+- `set autocommit = 0`
+- `insert into TableName values(value1, value2)`
+- `rollback;`
 
 ## 46. Truncate Statement
+> No matter if autocommit is set to 0 or 1, truncate will permanently delete all the records of a particular table.
+
+- `truncate table tablename`
 
 ## 47. Single and Multi Line Comments
 
+> -- single line comment
+
+> /* This is a multi
+>
+> line comment */
+
 ## 48. Group By Clause
+> To group the retrieved records according to the specified column. 
+
+- `select id from Country`
+- `select count(id) from Country`
+- `select count(id), continent from Country group by continent`
+- `select sum(amount) from payment group by customerid`
 
 ## 49. Having Clause
+> Having clause is like where clause for group by clause
+
+- `select count(id), continent from Country group by continent having count(id)<10`
+- `select sum(amount) from payment group by customerid having sum(amount)>1000`
 
 ## 50. Sequence of using Where, Group By, Having and Order By
+> where > group by > having > order by
 
-## 51. Set Operator
+- `select count(*), country from Customers where city is not 'Berlin' group by country having length(customerName)>1 order by PostalCode`
 
-## 52. Union Operator
+## 51. Union Operator
 
-## 53. Union All Operator
+## 52. Union All Operator
 
-## 54. Intersect Operator
+## 53. Intersect Operator
 
-## 55. Minus Operator
+## 54. Minus Operator
 
-## 56. Tables and Aliases
+## 55. Tables and Aliases
+> Alias names for tables
 
-## 57. Joins
+- `select o.id, o.name, o.quantity, p.id, p.price, p.discount from Order o, Product p where o.id = p.id `
 
-## 58. Subquery
+## 56. Joins
+> The purpose of joins is to join two tables while retrieving data from tables using the common column.
+>
+> Types of joins
+>
+> - Inner Join
+> - Left Join
+> - Right Join
+> - Full Join
+> - Self Join
 
+Emp1
+| id | firstname |
+|----|-----------|
+| 1  | A         |
+| 2  | B         |
+| 3  | C         |
+| 4  | D         |
+
+Emp2
+| id | lastname |
+|----|-----------|
+| 3  | E         |
+| 4  | F         |
+| 5  | G         |
+| 6  | H         |
+
+### Inner Join
+`select * from Emp1 inner join Emp2 on Emp1.id=Emp2.id`
+
+Result
+| id | fristname | lastname |
+|----|-----------|----------|
+| 3  | C         | E        |
+| 4  | D         | F        |
+
+### Left Join
+`select * from Emp1 left join Emp2 on Emp1.id=Emp2.id`
+
+Result
+| id | fristname | lastname |
+|----|-----------|----------|
+| 1  | A         | NULL     |
+| 2  | B         | NULL     |
+| 3  | C         | E        |
+| 4  | D         | F        |
+
+### Right Join
+`select * from Emp1 right join Emp2 on Emp1.id=Emp2.id`
+
+Result
+| id | fristname | lastname |
+|----|-----------|----------|
+| 3  | C         | E        |
+| 4  | D         | F        |
+| 5  | NULL      | G        |
+| 6  | NULL      | H        |
+
+### Full Join
+> Full join is not supported in Mysql RDBMS. 
+
+### Self Join
+> Same table will be used two times
+>
+> There is no keyword for self join
+
+## 57. Subquery
+
+## 58. In Operator
+
+## 59. In Operator with mulit row subquery
+
+## 60. Any operator with multi row subquery
+
+## 61. All operator with multi row subquery
+
+## 62. Exists Operator
+
+## 63. Using subquery to retrieve records from multiple tables
+
+## 64. Multiple subquery in single sql statement
+
+## 65. Integrity constraint
+
+## 66. Not Null Integrity constraint
+
+## 67. Unique Integrity constraint
+
+## 68. Primary Key Integrity constraint
+
+## 69. Foreign Key Integrity constraint
+
+## 70. Check Integrity constraint
+
+## 71. Default Integrity constraint
+
+## 72. auto_increment Integrity constraint
+
+## 73. Insert itno Integrity constraint
+
+## 74. IfNull() function
+
+## 75. Case, When, Then and End Keywords
+
+## 76. Delimeter
+ 
+## 77. Views
+
+## 78. Indexes
+
+## 79. Mysql shell CLI Tool
+
+## 80. Mysql command line client
+
+## 81. Types of SQL statement
+
+## 82. Grants and Revoke
+
+## 83. Temporary Tables
+
+## 84. Show Columns, Indexes, Privileges, grants statement
 
