@@ -546,58 +546,217 @@ Result
 > There is no keyword for self join
 
 ## 57. Subquery
+> Running query inside a query (Nested query)
+>
+> - Single row sub query
+> - multi row sub query
+
+### Single row subquery
+> Question: Select all customers in Customers table who are from the same city of "Hari Kumar"
+
+- `select * form Customers where city=(select city from Customers where name='Hari Kumar')`
+
+> Question: Find second max price of Products
+
+- `select max(price) from Products where price<(select max(price) from Products)`
+
+> Question: Display products sold at least price
+
+- `select * from products where price=(select min(price) from products)`
 
 ## 58. In Operator
+> Without IN operator we can only give one value in WHERE clause.
+
+- `select * from Customers where city = 'Delhi'`
+- `select * from Customers where city IN ('Delhi', 'Bombay', 'Pune')`
 
 ## 59. In Operator with mulit row subquery
+> Question: Find different products which fall into specified name category.
+
+- `select * from product where categoryid IN (select categoryid from category where categoryname like 'C%')`
 
 ## 60. Any operator with multi row subquery
+> ANY means that the condition will be true if the operation is true for any of the values in the range.
+
+- `SELECT column_name(s)
+FROM table_name
+WHERE column_name operator ANY
+  (SELECT column_name
+  FROM table_name
+  WHERE condition);`
+
+Note: The operator must be a standard comparison operator (=, <>, !=, >, >=, <, or <=).
+
+> Example:
+- `SELECT ProductName FROM Products WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);`
+
+> `productid=10 or productid=20 or productid=30 `
 
 ## 61. All operator with multi row subquery
+> Example:
+- `SELECT ProductName FROM Products WHERE ProductID = ALL (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);`
+
+> `productid=10 and productid=20 and productid=30`
 
 ## 62. Exists Operator
+> The EXISTS operator is used to test for the existence of any record in a subquery.
+
+- `select * from orders where exists (select * from customers where customerid=10)`
 
 ## 63. Using subquery to retrieve records from multiple tables
+> Example
+
+- `select city, (select country from Country where City.country_id = Coutnry.country_id) as country from City`
 
 ## 64. Multiple subquery in single sql statement
+> Question: List out films having length less than meximum length and having rental duration equal to minimum rental duration
+
+- `select * from film where length < (select max(length) from film) and rental_duration = (select min(rental_duration) from film)`
 
 ## 65. Integrity constraint
+> We can apply these integrity constraints to the table column while using create and alter sql statements
+
+> The following constraints are commonly used in SQL:
+
+- NOT NULL - Ensures that a column cannot have a NULL value
+- UNIQUE - Ensures that all values in a column are different
+- PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+- FOREIGN KEY - Prevents actions that would destroy links between tables
+- CHECK - Ensures that the values in a column satisfies a specific condition
+- DEFAULT - Sets a default value for a column if no value is specified
+- CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+Note: Syntax to add, alter, create a column with integrity constraints might vary from Mysql, Sql server, oracle etc etc
 
 ## 66. Not Null Integrity constraint
+- `CREATE TABLE Persons (ID int NOT NULL, LastName varchar(255) NOT NULL, FirstName varchar(255) NOT NULL, Age int);`
+
+- `ALTER TABLE Persons MODIFY COLUMN Age int NOT NULL;`
 
 ## 67. Unique Integrity constraint
+- `CREATE TABLE Persons (
+    ID int NOT NULL UNIQUE,
+    FirstName varchar(255)
+);`
+
+- `ALTER TABLE Persons ADD UNIQUE (ID);`
 
 ## 68. Primary Key Integrity constraint
+- `CREATE TABLE Persons (ID int NOT NULL, LastName varchar(255) NOT NULL, FirstName varchar(255), Age int, PRIMARY KEY (ID));`
 
 ## 69. Foreign Key Integrity constraint
+- `CREATE TABLE Orders (
+    OrderID int NOT NULL PRIMARY KEY,
+    OrderNumber int NOT NULL,
+    PersonID int FOREIGN KEY REFERENCES Persons(PersonID)
+);`
 
 ## 70. Check Integrity constraint
+- `CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int CHECK (Age>=18)
+);`
 
 ## 71. Default Integrity constraint
+- `CREATE TABLE Persons (
+    ID int NOT NULL,
+    FirstName varchar(255),
+    City varchar(255) DEFAULT 'Delhi'
+);`
 
 ## 72. auto_increment Integrity constraint
+> Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table.
+
+- `CREATE TABLE Persons (
+    Personid int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (Personid)
+);`
+
+Note: By default, the starting value for AUTO_INCREMENT is 1
 
 ## 73. Insert itno Integrity constraint
 
 ## 74. IfNull() function
+> Return the specified value IF the expression is NULL, otherwise return the expression:
+
+- `SELECT IFNULL(expression, alt_value);`
+
+expression: Required. The expression to test whether is NULL
+alt_value:	Required. The value to return if expression is NULL
 
 ## 75. Case, When, Then and End Keywords
+> The CASE statement goes through conditions and return a value when the first condition is met (like an IF-THEN-ELSE statement). So, once a condition is true, it will stop reading and return the result.
+>
+> If no conditions are true, it will return the value in the ELSE clause. 
+>
+> If there is no ELSE part and no conditions are true, it returns NULL.
 
-## 76. Delimeter
+- 
+    `select product, price,`
+
+    `case`
+    
+    `when price=10 then 'price is equal to 10'`
+    
+    `when price>10 then 'price is greater than 10'`
+    
+    `else 'price is smaller than 10'`
+    
+    `as pricedetails`
+    
+    `from Products`
+
+## 76. Advance SQL Functions
+- select BIN(15) // binary repr of a number
+- select BINARY "a sentence" // convert value to binary string
+- select COALESCE(null, null, 'W3Schools.com', null, 'Example.com'); // returns first non null value
+- select CONNECTION_ID(); // Return the unique connection ID for the current connection:
+- select CONV(15, 10, 2); // Convert a number from numeric base system 10 to numeric base system 2
+- select CURRENT_USER(); //Return the user name and host name for the MySQL account
+- select DATABASE(); //Return the name of the current (default) database
+- select SYSTEM_USER(); //Return the current user name and host name for the MySQL connection
+- select USER(); //Return the current user name and host name for the MySQL connection
+
+## 77. Delimeter
  
-## 77. Views
+## 78. Views
 
-## 78. Indexes
+## 79. Indexes
 
-## 79. Mysql shell CLI Tool
+## 80. Mysql shell CLI Tool
 
-## 80. Mysql command line client
+## 81. Mysql command line client
 
-## 81. Types of SQL statement
+## 82. Types of SQL statement
+- DQL: Select statements
+- DML: Insert, Update, Delete
+- DDl: Create, Drop, Alter, Truncate
+- TCL: commit, rollback
+- DCL: grant, revoke
 
-## 82. Grants and Revoke
+## 83. Grants and Revoke
+> Create User in mySql server.
+>
+> Grant and revoke permissions
+> - use db;
+> - grant select, insert on table to 'new_non_root_user';
+> - revoke select, insert on table to 'new_non_root_user';
 
-## 83. Temporary Tables
+> - use db;
+> - grant select, insert, drop, delete, alter on table to 'new_non_root_user';
+> - revoke select, insert on table to 'new_non_root_user';
 
-## 84. Show Columns, Indexes, Privileges, grants statement
+## 84. Temporary Tables
+
+## 85. Show Columns, Indexes, Privileges, grants statement
+- `show columns from tablename`
+- `show indexes from tablename`
+- `show previliges`
+- `show grant for 'userone'`
+- `show grant for 'usertwo'`
 
